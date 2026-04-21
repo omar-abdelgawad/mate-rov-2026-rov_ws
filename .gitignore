@@ -1,0 +1,62 @@
+# custom robocup leftovers that still makesense here
+*.h5
+*.pt
+.codex
+.vscode/
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# --- ROS 2 Specifics ---
+build/
+install/
+log/
+
+# --- Python Specifics ---
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+# Virtual environments
+.venv
+venv/
+# Environments
+.env
+.envrc
+env/
+ENV/
+env.bak/
+venv.bak/
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+# logfiles
+*.log
+# Jupyter Notebook
+.ipynb_checkpoints
+# Ruff stuff:
+.ruff_cache/
+
+# --- C++ Specifics ---
+*.o
+*.so
+*.a
+*.out
+
+# --- Apple suckers Specifics ---
+.DS_Store
