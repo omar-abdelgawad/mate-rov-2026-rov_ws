@@ -4,8 +4,12 @@ channels = ["conda-forge", "https://prefix.dev/aurobotics"]
 name = "rov_ws"
 platforms = ["linux-64"]
 version = "0.1.0"
+preview = ["pixi-build"]
 
 [tasks]
 
 [dependencies]
 opencv = { version = ">=4.13.0,<5", channel = "https://prefix.dev/aurobotics" }
+
+[pypi-dependencies]
+information-sheet-problem = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-information-sheet-problem", tag = "v1" }
