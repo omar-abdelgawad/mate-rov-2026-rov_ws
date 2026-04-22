@@ -7,6 +7,7 @@ from pilot import PilotUi
 from copilot import CopilotUi, CAM_PORTS
 from engineer import EngineerUi
 from Float import FloatUi
+from Crab_Detection import CrabDetectionUi
 from utils import VideoCaptureThread, scale, ROSInterface
 
 class MainWindow(QMainWindow):
@@ -22,7 +23,7 @@ class MainWindow(QMainWindow):
         self.co_pilot_page = QDialog()
         self.engineer_page = QDialog()
         self.float_page = QDialog()
-
+        self.crab_detection_page = QDialog()
         # code for Setting up the UI for each page
         self.landing_page_ui = LandingPageUi()
         self.landing_page_ui.setupUi(self.landing_page)
@@ -39,13 +40,16 @@ class MainWindow(QMainWindow):
         self.engineer_ui = EngineerUi()
         self.engineer_ui.setupUi(self.engineer_page)
 
+        self.crab_detection_ui = CrabDetectionUi()
+        self.crab_detection_ui.setupUI(self.crab_detection_page, start_thread=False)
+
         
         self.stacked_widget.addWidget(self.landing_page)
         self.stacked_widget.addWidget(self.pilot_page)
         self.stacked_widget.addWidget(self.co_pilot_page)
         self.stacked_widget.addWidget(self.engineer_page)
         self.stacked_widget.addWidget(self.float_page)
-
+        self.stacked_widget.addWidget(self.crab_detection_page)
         
         self.setCentralWidget(self.stacked_widget)
 
@@ -54,19 +58,18 @@ class MainWindow(QMainWindow):
         self.landing_page_ui.CoButton.clicked.connect(self.show_co_pilot_page)
         self.landing_page_ui.EngButton.clicked.connect(self.show_engineer_page)
         self.landing_page_ui.FloatButton.clicked.connect(self.show_float_page)
-
+        
         self.pilot_ui.BackButton.clicked.connect(self.show_landing_page)
         self.co_pilot_ui.back_button.clicked.connect(self.show_landing_page)
         self.engineer_ui.BackButton.clicked.connect(self.show_landing_page)
+        self.engineer_ui.IccButton.clicked.connect(self.show_crab_detection_page)
         self.float_ui.back_button.clicked.connect(self.show_landing_page)
 
         
         self.video_thread = VideoCaptureThread()
 
-        
-        self.engineer_ui.RecButton.clicked.connect(self.start_recording)
-        self.engineer_ui.StopButton.clicked.connect(self.stop_recording)
 
+        self.crab_detection_ui.backBtn.clicked.connect(self.back_from_crab_detection)
         self._connect_ros_signals()
 
 
@@ -91,16 +94,24 @@ class MainWindow(QMainWindow):
     def stop_recording(self):
         self.video_thread.stop_recording()
 
+    def show_crab_detection_page(self):
+        """Show crab detection page and start the thread"""
+        self.crab_detection_ui.start_thread()
+        self.stacked_widget.setCurrentWidget(self.crab_detection_page)
+
+    def back_from_crab_detection(self):
+        """Stop the crab detection thread and go back"""
+        self.crab_detection_ui.stop()
+        self.show_engineer_page()
+
     def _connect_ros_signals(self):
         """Connect ROS signals to UI updates"""
-        # self.ros_interface.signal_emitter.float_signal.connect(self.float_ui.update_float)
         self.ros_interface.signal_emitter.depth_signal.connect(self.co_pilot_ui.update_actual_depth)
         self.ros_interface.signal_emitter.gripper_r_signal.connect(self.co_pilot_ui.update_gripper_r)
         self.ros_interface.signal_emitter.gripper_l_signal.connect(self.co_pilot_ui.update_gripper_l)
         self.ros_interface.signal_emitter.thrusters_signal.connect(self.co_pilot_ui.update_thrusters)
         self.ros_interface.signal_emitter.imu_signal.connect(self.co_pilot_ui.update_imu)
         self.ros_interface.signal_emitter.indicators_signal.connect(self.co_pilot_ui.update_indicators)
-        # self.ros_interface.signal_emitter.jellyfish_signal.connect(self.co_pilot_ui.update_jellyfish_status)
         self.ros_interface.signal_emitter.desired_signal.connect(self.co_pilot_ui.update_desired_values)
         self.ros_interface.signal_emitter.angles_signal.connect(self.co_pilot_ui.update_angles)
 
