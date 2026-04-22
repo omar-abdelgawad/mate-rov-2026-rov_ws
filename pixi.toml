@@ -9,14 +9,17 @@ preview = ["pixi-build"]
 [tasks]
 
 [dependencies]
-opencv = { version = "*", channel = "https://prefix.dev/aurobotics" }
+# opencv = { version = "*", channel = "https://prefix.dev/aurobotics" }
 information-sheet-problem = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-information-sheet-problem", tag = "v3" }
 crab-detection = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection", tag = "v3" }
 # crab-detection = { path = "../crab-detection/" }
+## resolving errors
+setuptools = "<82"
+ros-jazzy-desktop = "*"
 
 [pypi-dependencies]
 torch = ">=2.11.0, <3"
 torchvision = ">=0.26.0, <0.27"
-pyqt5 = ">=5.15.11, <6"
-paramiko = ">=4.0.0, <5"
-screeninfo = ">=0.8.1, <0.9"
+pyqt5 = "*"
+paramiko = "*"
+screeninfo = "*"
