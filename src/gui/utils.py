@@ -9,7 +9,7 @@ from multiprocessing import Process, Array
 import math
 from screeninfo import get_monitors
 import time
-from rov25.gui_backend import start_ros
+from gui_backend import start_ros
 
 # Singleton Class for ROS Interface
 

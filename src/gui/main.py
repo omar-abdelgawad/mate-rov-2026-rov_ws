@@ -1,3 +1,4 @@
+import cv2
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QStackedWidget, QDialog
 from PyQt5.QtGui import QFont
