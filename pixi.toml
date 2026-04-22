@@ -10,6 +10,10 @@ preview = ["pixi-build"]
 
 [dependencies]
 opencv = { version = ">=4.13.0,<5", channel = "https://prefix.dev/aurobotics" }
+# information-sheet-problem = { path = "../information-sheet-problem/" }
+information-sheet-problem = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-information-sheet-problem", tag = "v3" }
+crab-detection = { path = "../crab-detection/" }
 
 [pypi-dependencies]
-information-sheet-problem = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-information-sheet-problem", tag = "v1" }
+torch = ">=2.11.0, <3"
+torchvision = ">=0.26.0, <0.27"
