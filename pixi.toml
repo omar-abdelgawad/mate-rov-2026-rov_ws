@@ -1,6 +1,6 @@
 [workspace]
 authors = ["omar-abdelgawad <omar.abdelgawad@ejust.edu.eg>"]
-channels = ["conda-forge", "https://prefix.dev/aurobotics", "robostack-jazzy"]
+channels = ["https://prefix.dev/aurobotics", "conda-forge", "robostack-jazzy"]
 name = "rov_ws"
 platforms = ["linux-64"]
 version = "0.1.0"
@@ -9,9 +9,9 @@ preview = ["pixi-build"]
 [tasks]
 
 [dependencies]
-# opencv = { version = "*", channel = "https://prefix.dev/aurobotics" }
+opencv = { version = "*", channel = "https://prefix.dev/aurobotics"}
 information-sheet-problem = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-information-sheet-problem", tag = "v3" }
-crab-detection = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection", tag = "v3" }
+crab-detection = { git = "https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection", tag = "v4" }
 # crab-detection = { path = "../crab-detection/" }
 ## resolving errors
 setuptools = "<82"

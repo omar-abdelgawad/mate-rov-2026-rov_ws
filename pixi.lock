@@ -268,7 +268,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/lxml-6.1.0-py312h63ddcf0_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/lz4-4.4.5-py312h3d67a73_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/lz4-c-1.10.0-h5888daf_1.conda
-      - conda: git+https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection?tag=v3#a746c457fed8751a6897c9ca2703101b236fe0f8
+      - conda: git+https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection?tag=v4#f2de2265c29a71213ff952ad69f4a5a463d12bb6
       - conda: git+https://github.com/ejustroboticsclub/mate-rov-2026-information-sheet-problem?tag=v3#6106e1b5340291e36d53f8e741ccd4b3950b7e6a
       - conda: https://conda.anaconda.org/conda-forge/linux-64/matplotlib-base-3.10.8-py312he3d6523_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mccabe-0.7.0-pyhd8ed1ab_1.conda
@@ -1352,7 +1352,7 @@ packages:
   purls: []
   size: 46463
   timestamp: 1772728929620
-- conda: git+https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection?tag=v3#a746c457fed8751a6897c9ca2703101b236fe0f8
+- conda: git+https://github.com/ejustroboticsclub/mate-rov-2026-crab-detection?tag=v4#f2de2265c29a71213ff952ad69f4a5a463d12bb6
   name: crab-detection
   version: 0.1.0
   build: pyh4616a5c_0
