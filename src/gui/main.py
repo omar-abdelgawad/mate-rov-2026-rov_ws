@@ -9,6 +9,7 @@ from engineer import EngineerUi
 from Float import FloatUi
 from Crab_Detection import CrabDetectionUi
 from utils import VideoCaptureThread, scale, ROSInterface
+from infoSheetInput import infoSheetInputUi #---------------------------------------------------------------
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -24,9 +25,11 @@ class MainWindow(QMainWindow):
         self.engineer_page = QDialog()
         self.float_page = QDialog()
         self.crab_detection_page = QDialog()
+        self.infoSheetInput_page = QDialog() #---------------------------------------------------------------
+        self.infoSheetOutput_page = QDialog() #---------------------------------------------------------------
         # code for Setting up the UI for each page
         self.landing_page_ui = LandingPageUi()
-        self.landing_page_ui.setupUi(self.landing_page)
+        self.landing_page_ui.setupUi(self.landing_page) 
 
         self.pilot_ui = PilotUi()
         self.pilot_ui.setupUi(self.pilot_page)
@@ -43,6 +46,10 @@ class MainWindow(QMainWindow):
         self.crab_detection_ui = CrabDetectionUi()
         self.crab_detection_ui.setupUI(self.crab_detection_page, start_thread=False)
 
+        self.infoSheetInput_ui = infoSheetInputUi() #---------------------------------------------------------------
+        self.infoSheetInput_ui.setupUi(self.infoSheetInput_page)
+        # self.infoSheetOutput_ui = infoSheetOutputUi() #---------------------------------------------------------------
+
         
         self.stacked_widget.addWidget(self.landing_page)
         self.stacked_widget.addWidget(self.pilot_page)
@@ -50,7 +57,9 @@ class MainWindow(QMainWindow):
         self.stacked_widget.addWidget(self.engineer_page)
         self.stacked_widget.addWidget(self.float_page)
         self.stacked_widget.addWidget(self.crab_detection_page)
-        
+        self.stacked_widget.addWidget(self.infoSheetInput_page) #---------------------------------------------------------------
+        # self.stacked_widget.addWidget(self.infoSheetOuput_page) #---------------------------------------------------------------
+
         self.setCentralWidget(self.stacked_widget)
 
         
@@ -63,13 +72,15 @@ class MainWindow(QMainWindow):
         self.co_pilot_ui.back_button.clicked.connect(self.show_landing_page)
         self.engineer_ui.BackButton.clicked.connect(self.show_landing_page)
         self.engineer_ui.IccButton.clicked.connect(self.show_crab_detection_page)
-        self.float_ui.back_button.clicked.connect(self.show_landing_page)
+        self.engineer_ui.InformationButton.clicked.connect(self.infoSheet_take_inputs_page) #---------------------------------------------------------------
+        self.float_ui.back_button.clicked.connect(self.show_landing_page) 
+        self.crab_detection_ui.backBtn.clicked.connect(self.back_from_crab_detection)
+        self.infoSheetInput_ui.bachBtn.clicked.connect(self.show_engineer_page) #---------------------------------------------------------------
 
         
         self.video_thread = VideoCaptureThread()
 
 
-        self.crab_detection_ui.backBtn.clicked.connect(self.back_from_crab_detection)
         self._connect_ros_signals()
 
 
@@ -98,6 +109,9 @@ class MainWindow(QMainWindow):
         """Show crab detection page and start the thread"""
         self.crab_detection_ui.start_thread()
         self.stacked_widget.setCurrentWidget(self.crab_detection_page)
+
+    def infoSheet_take_inputs_page(self): #---------------------------------------------------------------
+        self.stacked_widget.setCurrentWidget(self.infoSheetInput_page)
 
     def back_from_crab_detection(self):
         """Stop the crab detection thread and go back"""

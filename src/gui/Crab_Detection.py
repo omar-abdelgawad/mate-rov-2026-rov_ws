@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from Crab_detector.crab_detector import CrabDetector # From package 
+from crab_detection.crab_detector import CrabDetector # from pkg 
 from stylesheet import back_st, selection_st
 from utils import BG_path, scale
 
